@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style media="screen">
+
+:root {
+  --mainwidth: 75%;
+  --navwidth: 256px;
+  --citywidth: 65%;
+}
+/* Style the navigation menu */
+nav {
+  background: #22284f;
+  padding: 0px;
+  margin: auto;
+  width: var(--citywidth);
+  font-size: 1.2vw;
+  text-align: center;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+a {
+  color: #99284f;
+}	
+      	
+body {
+  background-image: url(images/scosmobg.png);
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+h2 {
+  color: #facade;
+  font-size: x	x-large;
+}
+      
+.city {
+  background-color: #22284f;
+  color: white;
+  border: 2px solid black;
+  margin: 2px;
+  padding: 20px;
+  width: var(--citywidth);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbutts {
+  background-color: #badagg;
+  color: white;
+  border: 2px solid black;
+  margin: 2px;
+  padding: 20px;
+  width: var(--citywidth);
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+}
+
+button {
+ background-color: #FFFFFF;
+ color: black;
+ width: 32%;  
+}
+
+button:hover {
+  color: red;
+}
+
+
+</style>
+    <meta charset="utf-8">
+  </head>
+<body>
+
+<section>
+
+<nav>
+<!--img src = "images/city" alt = "citypic" width = 100%-->
+  <h2>Quick Links</h2>
+    <ul>
+      <li><a href="index.html">Homepage</a></li> 
+      <hr>
+      <li><a href="scosmo.html">Blue Moon</a></li>
+      <hr>
+      <li><a href="original.html">Original Comic</a></li>
+      <hr>
+      <li><a href="scosmo.html">Blue Moon Again</a></li>
+    </ul>
+  </nav>
+
+<div class="navbutts">
+  <button onclick="changePage(false);" width ="40%"> << Previous Page </button> <button type="button"class="btn disabled" id="pageNoDisplay"> Page 2 </button> <button onclick="changePage(true);">  Next Page >> </button>
+</div>
+
+<div class="city">
+  <img id = "mainImg" src = "images/page2" alt = "page2" width = 100%>
+</div>
+
+</section>
+
+<div class="navbutts">
+  <button onclick="changePage(false); scrollFunction()" width ="40%"> << Previous Page </button> <button type="button"class="btn disabled" id="pageNoDisplay"> Page 2 </button> <button onclick="changePage(true); scrollButton()">  Next Page >> </button>
+</div>
+
+<script>
+const TOTALPAGES = 4;
+var pageNo = 2;
+console.log(pageNo);
+
+/**
+	Function that deals with changing the page
+	Stolen from w3schools.com
+**/
+
+
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+} 	
+
+
+
+function changePage(Forward){
+    if (Forward && (pageNo > 1) && (pageNo < TOTALPAGES + 1)) { //forwards a page
+    	pageNo++;
+    }
+    else if ((!Forward) && (pageNo > 2) && (pageNo < TOTALPAGES + 2)){ //backwards a page
+    	pageNo--;
+    }
+    
+    else { console.log("Error changing page in function changePage()"); }
+    
+    console.log(Forward);	
+    
+    //update what the user sees
+    	//getting elements
+    mainImg = document.getElementById("mainImg");
+    pageNoDisplay = document.getElementById("pageNoDisplay");
+    	//changing elements
+    mainImg.src = ("images/page" + pageNo);
+    mainImg.alt = ("page" + pageNo);
+    pageNoDisplay.innerHTML = ("Page " + pageNo);
+    console.log(pageNo);
+}
+  //location.reload();
+  
+</script>
+
+
+
+</body>
+</html>
